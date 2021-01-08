@@ -1,11 +1,12 @@
 <template>
   <div class="container">
-    <Menu :menuOpened="showClose"/>
+    <Loading v-if="loading"/>
+    <Menu v-if="data.social_media" :links="data.social_media" :menuOpened="showClose"/>
     <div class="hamburger" :class="{ close: showClose }" @click="openMenu">
     </div>
     <div class="content">
-      <socials/>
-      <h1>AQUILA AVEION</h1>
+      <socials v-if="data.social_media" :links="data.social_media"/>
+      <h1>{{data.name}}</h1>
       <img class="cover-photo" src="./assets/lady.png">
       <navigation/>
     </div>
@@ -16,25 +17,36 @@
 import Menu from './components/Menu.vue'
 import Navigation from './components/Navigation.vue'
 import Socials from './components/Socials.vue'
+import Loading from './components/Loading.vue'
+import axios from 'axios'
 
 export default {
   name: 'App',
   components: {
     Navigation,
     Socials,
-    Menu
+    Menu,
+    Loading
   },
 
   data(){
     return{
-      showClose: false
+      showClose: false,
+      loading: true,
+      data: {}
     }
   },
   methods:{
     openMenu(){
       this.showClose = !this.showClose
     }
-  }
+  },
+
+  async created(){
+    const response = await axios.get('https://hirng-x2021.glitch.me/api');
+    this.loading = false;
+    this.data = response.data;
+  } 
 }
 </script>
 

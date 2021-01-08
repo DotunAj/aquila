@@ -14,18 +14,18 @@
       <li><a href="#">CONTACT</a></li>
     </ul>
 
-     <ul class="footer">
-      <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-      <li><a href="#"><i class="fab fa-twitter-square"></i></a></li>
-      <li><a href="#"><i class="fab fa-snapchat-square"></i></a></li>
-      <li><a href="#"><i class="fas fa-envelope-square"></i></a></li>       
+    <ul class="footer">
+      <li><a :href="`https://instagram.com/${links.instagram}`"><i class="fab fa-instagram"></i></a></li>
+      <li><a :href="`https://twitter.com/${links.twitter}`"><i class="fab fa-twitter-square"></i></a></li>
+      <li><a :href="`https://snapchat.com/${links.snapchat}`"><i class="fab fa-snapchat-square"></i></a></li>
+      <li><a :href="`mailto:${links.email}`"><i class="fas fa-envelope-square"></i></a></li>       
     </ul>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['menuOpened']
+  props: ['menuOpened', 'links']
 }
 </script>
 
